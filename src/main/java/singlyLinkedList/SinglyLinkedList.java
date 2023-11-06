@@ -4,6 +4,7 @@ public class SinglyLinkedList implements CustomList{
     private Node head;
     private Node tail;
 
+    // добавление значения в конец списка
     @Override
     public void add(Integer data) {
         Node temp = new Node(data, null);
@@ -17,31 +18,50 @@ public class SinglyLinkedList implements CustomList{
     }
 
     @Override
+    public void insert(Integer data) {
+        Node temp = new Node(data, head);
+        if (head == null) {
+            head = tail = temp;
+        }
+        else {
+            head = temp;
+        }
+    }
+
+    @Override
     public void remove(Integer data) {
 
     }
 
+    // извлечение значения из конца списка без его удаления
     @Override
     public Integer getLast() {
-        return null;
+        return tail != null ? tail.data : null;
     }
 
+    // извлечение значения из начала списка без его удаления
     @Override
     public Integer getFirst() {
-        return null;
+        return head != null ? head.data : null;
     }
 
+    // печать всех значений списка
     @Override
     public void print() {
-
+        System.out.println(this);
     }
 
     @Override
     public String toString() {
-        return "SinglyLinkedList{" +
-                "head=" + head +
-                ", tail=" + tail +
-                '}';
+        StringBuilder sb = new StringBuilder("[");
+        Node temp = head;
+        while (temp != null) {
+            sb.append(temp.data);
+            sb.append(temp.next != null ? ", " : "");
+            temp = temp.next;
+        }
+        sb.append("]");
+        return sb.toString();
     }
 
     private static class Node {

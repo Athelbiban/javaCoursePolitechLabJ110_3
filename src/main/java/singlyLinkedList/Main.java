@@ -9,6 +9,9 @@ public class Main {
         list.add(4);
         list.add(5);
 
-        System.out.println(list.toString());
+        System.out.println(list);
+
+        System.out.println(list.getFirst());
+        System.out.println(list.getLast());
     }
 }
