@@ -7,5 +7,7 @@ public interface CustomList {
     void remove(Integer data);
     Integer getLast();
     Integer getFirst();
+    Integer getFirstAndDel();
+    Integer getLastAndDel();
     void print();
 }
