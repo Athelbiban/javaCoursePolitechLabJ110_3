@@ -14,7 +14,7 @@ public class Main {
         list1.print();
         System.out.println();
 
-        System.out.println(list.listEmpty());
-        System.out.println(list1.listEmpty());
+        list.remove(3);
+        list.print();
     }
 }

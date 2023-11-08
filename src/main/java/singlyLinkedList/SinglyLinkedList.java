@@ -111,17 +111,23 @@ public class SinglyLinkedList implements CustomList{
     // *удаление заданного значения из списка
     @Override
     public void remove(Integer data) {
-        if (!listEmpty() && isExist(data)) {
-
+        if (!listEmpty()) {
             Node tempHead = head;
+            Node previousNode = null;
+
             while (head != null) {
                 if (head.data == data) {
                     if (head == tempHead) {
                         tempHead = head.next;
                     }
+                    else {
+                        previousNode.next = head.next;
+                    }
                 }
+                previousNode = head;
                 head = head.next;
             }
+
             head = tempHead;
         }
     }
