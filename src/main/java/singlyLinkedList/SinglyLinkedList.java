@@ -59,13 +59,20 @@ public class SinglyLinkedList implements CustomList{
     public Integer getLastAndDel() {
         if (tail != null) {
             Integer tempTailData = tail.data;
+
+            if (head == tail) {
+                head = null;
+                tail = null;
+                return tempTailData;
+            }
+
             Node tempHead = head;
-//            Node tempTail = tail;
             while (head.next != tail) {
                 head = head.next;
             }
-            head.next = null;
+
             tail = head;
+            tail.next = null;
             head = tempHead;
             return tempTailData;
         }
@@ -75,8 +82,25 @@ public class SinglyLinkedList implements CustomList{
     }
 
     // определение, содержит ли заданное значение
+    @Override
+    public Boolean isExist(Integer data) {
+        Node tempHead = head;
+
+        while (head != null) {
+            if (head.data == data) {
+                head = tempHead;
+                return true;
+            }
+            head = head.next;
+        }
+
+        head = tempHead;
+        return false;
+    }
 
     // определение, является ли пустым
+    @Override
+    public Boolean listEmpty() { return head == null; }
 
     // печать всех значений списка
     @Override
@@ -87,7 +111,22 @@ public class SinglyLinkedList implements CustomList{
     // *удаление заданного значения из списка
     @Override
     public void remove(Integer data) {
+        if (!listEmpty() && isExist(data)) {
+
+            Node tempHead = head;
+            while (head != null) {
+                if (head.data == data) {
+                    if (head == tempHead) {
+                        tempHead = head.next;
+                    }
+                }
+                head = head.next;
+            }
+            head = tempHead;
+        }
     }
+
+    // *выполнение действия, заданного в параметре метода
 
     @Override
     public String toString() {

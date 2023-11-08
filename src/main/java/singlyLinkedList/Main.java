@@ -6,17 +6,15 @@ public class Main {
         list.add(1);
         list.add(2);
         list.add(3);
-//        list.add(4);
-//        list.add(5);
+        list.add(4);
+        list.add(5);
+        CustomList list1 = new SinglyLinkedList();
 
-        System.out.println(list);
-
+        list.print();
+        list1.print();
         System.out.println();
-        System.out.println(list.getLastAndDel());
-        list.print();
-        System.out.println(list.getLastAndDel());
-        list.print();
-        System.out.println(list.getLastAndDel());
-        list.print();
+
+        System.out.println(list.listEmpty());
+        System.out.println(list1.listEmpty());
     }
 }

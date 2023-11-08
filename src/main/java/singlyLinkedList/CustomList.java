@@ -9,5 +9,7 @@ public interface CustomList {
     Integer getFirst();
     Integer getFirstAndDel();
     Integer getLastAndDel();
+    Boolean isExist(Integer data);
+    Boolean listEmpty();
     void print();
 }
