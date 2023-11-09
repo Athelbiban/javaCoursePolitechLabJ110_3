@@ -87,7 +87,7 @@ public class SinglyLinkedList implements CustomList{
         Node tempHead = head;
 
         while (head != null) {
-            if (head.data == data) {
+            if (head.data.equals(data)) {
                 head = tempHead;
                 return true;
             }
@@ -114,9 +114,8 @@ public class SinglyLinkedList implements CustomList{
         if (!listEmpty()) {
             Node tempHead = head;
             Node previousNode = null;
-
             while (head != null) {
-                if (head.data == data) {
+                if (head.data.equals(data)) {
                     if (head == tempHead) {
                         tempHead = head.next;
                     }
@@ -127,12 +126,18 @@ public class SinglyLinkedList implements CustomList{
                 previousNode = head;
                 head = head.next;
             }
-
             head = tempHead;
         }
     }
 
     // *выполнение действия, заданного в параметре метода
+    public interface Command {
+        void execute(Object data);
+    }
+
+    public static void callCommand(Command command, Object data) {
+        command.execute(data);
+    }
 
     @Override
     public String toString() {

@@ -11,5 +11,6 @@ public interface CustomList {
     Integer getLastAndDel();
     Boolean isExist(Integer data);
     Boolean listEmpty();
+//    void execute();
     void print();
 }
