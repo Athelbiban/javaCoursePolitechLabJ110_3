@@ -14,11 +14,7 @@ public class Main {
         list1.print();
         System.out.println();
 
-        SinglyLinkedList.Command command = new SinglyLinkedList.Command() {
-            @Override
-            public void execute(Object data) {
-            }
-        };
-//        SinglyLinkedList.callCommand();
+        SinglyLinkedList.callCommand(new PrintCommand(), list);
+        list.print();
     }
 }

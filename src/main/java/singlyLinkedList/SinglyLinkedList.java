@@ -101,7 +101,6 @@ public class SinglyLinkedList implements CustomList{
     // определение, является ли пустым
     @Override
     public Boolean listEmpty() { return head == null; }
-
     // печать всех значений списка
     @Override
     public void print() {
@@ -131,14 +130,11 @@ public class SinglyLinkedList implements CustomList{
     }
 
     // *выполнение действия, заданного в параметре метода
-    public interface Command {
-        void execute(Object data);
+    public static void callCommand(Command command, CustomList list) {
+        command.execute(list);
     }
 
-    public static void callCommand(Command command, Object data) {
-        command.execute(data);
-    }
-
+    // переопределенный toString()
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("[");
