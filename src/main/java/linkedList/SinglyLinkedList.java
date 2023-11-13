@@ -1,6 +1,6 @@
-package singlyLinkedList;
+package linkedList;
 
-public class SinglyLinkedList implements CustomList{
+public class SinglyLinkedList implements CustomList {
     private Node head;
     private Node tail;
 
@@ -130,8 +130,19 @@ public class SinglyLinkedList implements CustomList{
     }
 
     // *выполнение действия, заданного в параметре метода
-    public static void callCommand(Command command, CustomList list) {
-        command.execute(list);
+    public static void callCommand(Command command) {
+        command.execute();
+    }
+
+    public void incrementAll(Integer value) {
+        if (!listEmpty()) {
+            Node tempHead = head;
+            while (head != null) {
+                head.data += value;
+                head = head.next;
+            }
+            head = tempHead;
+        }
     }
 
     // переопределенный toString()
