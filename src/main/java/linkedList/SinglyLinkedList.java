@@ -84,17 +84,17 @@ public class SinglyLinkedList implements CustomList {
     // определение, содержит ли заданное значение
     @Override
     public Boolean isExist(Integer data) {
-        Node tempHead = head;
-
-        while (head != null) {
-            if (head.data.equals(data)) {
-                head = tempHead;
-                return true;
+        if (!listEmpty()) {
+            Node tempHead = head;
+            while (head != null) {
+                if (head.data.equals(data)) {
+                    head = tempHead;
+                    return true;
+                }
+                head = head.next;
             }
-            head = head.next;
+            head = tempHead;
         }
-
-        head = tempHead;
         return false;
     }
 

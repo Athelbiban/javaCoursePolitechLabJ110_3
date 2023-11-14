@@ -27,17 +27,21 @@ public class Main {
 //        list.print();
 
         CustomList doublyList = new DoublyLinkedList();
+        CustomList doublyListEmpty = new DoublyLinkedList();
         doublyList.add(1);
         doublyList.add(3);
         doublyList.add(5);
         doublyList.add(7);
 
         doublyList.print();
-        doublyList.insert(2);
+        doublyListEmpty.print();
+        System.out.println();
+
+        System.out.println(doublyList.getFirst());
         doublyList.print();
-        doublyList.insert(4);
+        System.out.println(doublyList.getFirstAndDel());
         doublyList.print();
-        doublyList.remove(1);
+        System.out.println(doublyList.getFirst());
         doublyList.print();
     }
 }

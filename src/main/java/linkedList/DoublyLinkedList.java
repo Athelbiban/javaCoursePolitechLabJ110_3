@@ -35,12 +35,17 @@ public class DoublyLinkedList implements CustomList {
                 if (head.data.equals(data)) {
                     if (head == tempHead) {
                         tempHead = head.next;
+                        tempHead.previous = null;
+                    }
+                    else if (head != tail) {
+                        head.previous.next = head.next;
+                        head.next.previous = head.previous;
                     }
                     else {
-                        head.previous = head.next;
+                        tail = tail.previous;
+                        tail.next = null;
                     }
                 }
-                head.previous = head;
                 head = head.next;
             }
             head = tempHead;
@@ -48,27 +53,46 @@ public class DoublyLinkedList implements CustomList {
     }
 
     @Override
-    public Integer getLast() {
-        return null;
-    }
+    public Integer getLast() { return tail.data; }
 
     @Override
-    public Integer getFirst() {
-        return null;
-    }
+    public Integer getFirst() { return head.data; }
 
     @Override
     public Integer getFirstAndDel() {
+        if (!listEmpty()) {
+            int result = head.data;
+            head = head.next;
+            head.previous = null;
+            return result;
+        }
         return null;
     }
 
     @Override
     public Integer getLastAndDel() {
+        if (!listEmpty()) {
+            int result = tail.data;
+            tail = tail.previous;
+            tail.next = null;
+            return result;
+        }
         return null;
     }
 
+    // проверить этот метод
     @Override
     public Boolean isExist(Integer data) {
+        if (!listEmpty()) {
+            Node tempHead = head;
+            while (head != null) {
+                if (head.data.equals(data)) {
+                    head = tempHead;
+                    return true;
+                }
+                head = head.next;
+            }
+        }
         return null;
     }
 
@@ -83,11 +107,11 @@ public class DoublyLinkedList implements CustomList {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("[");
-        Node temp = head;
-        while (temp != null) {
-            sb.append(temp.data);
-            sb.append(temp.next != null ? ", " : "");
-            temp = temp.next;
+        Node tempHead = head;
+        while (tempHead != null) {
+            sb.append(tempHead.data);
+            sb.append(tempHead.next != null ? ", " : "");
+            tempHead = tempHead.next;
         }
         sb.append("]");
         return sb.toString();
