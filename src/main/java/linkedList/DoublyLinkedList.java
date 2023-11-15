@@ -80,7 +80,6 @@ public class DoublyLinkedList implements CustomList {
         return null;
     }
 
-    // проверить этот метод
     @Override
     public Boolean isExist(Integer data) {
         if (!listEmpty()) {
@@ -92,8 +91,9 @@ public class DoublyLinkedList implements CustomList {
                 }
                 head = head.next;
             }
+            head = tempHead;
         }
-        return null;
+        return false;
     }
 
     @Override
@@ -102,6 +102,11 @@ public class DoublyLinkedList implements CustomList {
     @Override
     public void print() {
         System.out.println(this);
+    }
+
+    // добавление всех значений массива в начало списка
+    public void insertArray(Integer data) {
+
     }
 
     @Override
