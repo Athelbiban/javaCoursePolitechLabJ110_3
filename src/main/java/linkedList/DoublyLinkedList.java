@@ -1,5 +1,7 @@
 package linkedList;
 
+import java.util.*;
+
 public class DoublyLinkedList implements CustomList {
     private Node head;
     private Node tail;
@@ -100,12 +102,62 @@ public class DoublyLinkedList implements CustomList {
     public Boolean listEmpty() { return head == null; }
 
     @Override
-    public void print() {
-        System.out.println(this);
+    public void print() { System.out.println(this); }
+
+    // добавление всех значений заданного массива в начало списка
+    public static void insertArray(DoublyLinkedList list, Integer[] data) {
+        if (data != null) {
+            for (int i = 0; i < data.length / 2; i++) {
+                int temp = data[i];
+                data[i] = data[data.length - i - 1];
+                data[data.length - i - 1] = temp;
+            }
+            for (Integer i : data) {
+                list.insert(i);
+            }
+        }
     }
 
-    // добавление всех значений массива в начало списка
-    public void insertArray(Integer data) {
+    // добавление всех значений заданной коллекции в начало списка
+    public static void insertCollection(DoublyLinkedList list, Iterable<Integer> collection) {
+        if (collection != null) {
+            Collections.reverse((List<Integer>) collection);
+            for (int i : collection) {
+                list.insert(i);
+            }
+        }
+    }
+
+    // добавление всех значений заданной массива/коллекции в конец списка
+    public static void addArray(DoublyLinkedList list, Integer[] data) {
+        if (data != null) {
+            for (Integer i : data) {
+                list.add(i);
+            }
+        }
+    }
+
+    public static void addCollection(DoublyLinkedList list, Iterable<Integer> collection) {
+        if (collection != null) {
+            for (Integer i : collection) {
+                list.add(i);
+            }
+        }
+    }
+
+    // поглощение одного списка другим с добавлением второго в начало/конец
+    public static void listTakeoverAndInsert(DoublyLinkedList list, List<Integer> data) {
+        if (data != null) {
+            List<Integer> dataCopy = new LinkedList<>(data);
+//            Collections.copy(dataCopy, data);
+            Collections.reverse(dataCopy);
+            for (Integer i : dataCopy) {
+                list.insert(i);
+            }
+        }
+    }
+
+    public static void listTakeoverAndAdd(DoublyLinkedList list, List<Integer> data) {
 
     }
 

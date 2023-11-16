@@ -1,6 +1,8 @@
 package linkedList;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
 
 public class Main {
     public static void main(String[] args) {
@@ -34,19 +36,36 @@ public class Main {
         doublyList1.add(3);
         doublyList1.add(5);
         doublyList1.add(7);
-        doublyList2.add(6);
-        doublyList2.add(4);
-        doublyList2.add(2);
+//        doublyList2.add(6);
+//        doublyList2.add(4);
+//        doublyList2.add(2);
 
         doublyList1.print();
-        doublyList2.print();
+//        doublyList2.print();
         System.out.println();
 
-        Integer[] intArr = new Integer[3];
+        Integer[] intArr = new Integer[4];
         intArr[0] = 6;
         intArr[1] = 4;
         intArr[2] = 2;
+        intArr[3] = 0;
 
-        System.out.println(Arrays.toString(intArr));
+//        System.out.println(Arrays.toString(intArr));
+
+        LinkedList<Integer> intList = new LinkedList<>();
+        ArrayList<Integer> intArrList = new ArrayList<>();
+        intArrList.add(11);
+        intArrList.add(12);
+        intArrList.add(13);
+        intList.add(21);
+        intList.add(22);
+        intList.add(23);
+        System.out.println(intList);
+
+        DoublyLinkedList.listTakeoverAndInsert((DoublyLinkedList) doublyList1, intList);
+        doublyList1.print();
+        DoublyLinkedList.listTakeoverAndInsert((DoublyLinkedList) doublyList1, intList);
+        doublyList1.print();
+
     }
 }
