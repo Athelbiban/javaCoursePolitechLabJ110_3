@@ -62,10 +62,9 @@ public class Main {
         intList.add(23);
         System.out.println(intList);
 
-        DoublyLinkedList.listTakeoverAndInsert((DoublyLinkedList) doublyList1, intList);
+        DoublyLinkedList.listTakeoverAndAdd((DoublyLinkedList) doublyList1, intArrList);
         doublyList1.print();
-        DoublyLinkedList.listTakeoverAndInsert((DoublyLinkedList) doublyList1, intList);
-        doublyList1.print();
+        System.out.println(intArrList);
 
     }
 }

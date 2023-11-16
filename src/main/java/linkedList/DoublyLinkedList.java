@@ -145,20 +145,24 @@ public class DoublyLinkedList implements CustomList {
         }
     }
 
-    // поглощение одного списка другим с добавлением второго в начало/конец
+    // поглощение одного списка другим с добавлением второго в начало/конец и очисткой второго
     public static void listTakeoverAndInsert(DoublyLinkedList list, List<Integer> data) {
         if (data != null) {
-            List<Integer> dataCopy = new LinkedList<>(data);
-//            Collections.copy(dataCopy, data);
-            Collections.reverse(dataCopy);
-            for (Integer i : dataCopy) {
+            Collections.reverse(data);
+            for (Integer i : data) {
                 list.insert(i);
             }
+            data.clear();
         }
     }
 
     public static void listTakeoverAndAdd(DoublyLinkedList list, List<Integer> data) {
-
+        if (data != null) {
+            for (Integer i : data) {
+                list.add(i);
+            }
+            data.clear();
+        }
     }
 
     @Override
