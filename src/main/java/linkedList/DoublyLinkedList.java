@@ -1,6 +1,8 @@
 package linkedList;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class DoublyLinkedList implements CustomList {
     private Node head;
@@ -128,7 +130,7 @@ public class DoublyLinkedList implements CustomList {
         }
     }
 
-    // добавление всех значений заданной массива/коллекции в конец списка
+    // добавление всех значений заданного массива/коллекции в конец списка
     public static void addArray(DoublyLinkedList list, Integer[] data) {
         if (data != null) {
             for (Integer i : data) {
@@ -146,7 +148,7 @@ public class DoublyLinkedList implements CustomList {
     }
 
     // поглощение одного списка другим с добавлением второго в начало/конец и очисткой второго
-    public static void listTakeoverAndInsert(DoublyLinkedList list, List<Integer> data) {
+    public static void takeoverAndInsert(DoublyLinkedList list, List<Integer> data) {
         if (data != null) {
             Collections.reverse(data);
             for (Integer i : data) {
@@ -156,12 +158,26 @@ public class DoublyLinkedList implements CustomList {
         }
     }
 
-    public static void listTakeoverAndAdd(DoublyLinkedList list, List<Integer> data) {
+    public static void takeoverAndAdd(DoublyLinkedList list, List<Integer> data) {
         if (data != null) {
             for (Integer i : data) {
                 list.add(i);
             }
             data.clear();
+        }
+    }
+    // печать всех значений списка в прямом/обратном порядке
+    public static void printInDirectOrder(DoublyLinkedList list) { list.print(); }
+
+    public static void printInReverseOrder(DoublyLinkedList list) {
+        if (list != null) {
+            Node tempHead = list.head;
+            DoublyLinkedList copyList = new DoublyLinkedList();
+            while (tempHead != null) {
+                copyList.insert(tempHead.data);
+                tempHead = tempHead.next;
+            }
+            copyList.print();
         }
     }
 

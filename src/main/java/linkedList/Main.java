@@ -36,19 +36,19 @@ public class Main {
         doublyList1.add(3);
         doublyList1.add(5);
         doublyList1.add(7);
-//        doublyList2.add(6);
-//        doublyList2.add(4);
-//        doublyList2.add(2);
+        doublyList2.add(6);
+        doublyList2.add(4);
+        doublyList2.add(2);
 
         doublyList1.print();
-//        doublyList2.print();
+        doublyList2.print();
         System.out.println();
 
         Integer[] intArr = new Integer[4];
-        intArr[0] = 6;
-        intArr[1] = 4;
-        intArr[2] = 2;
-        intArr[3] = 0;
+        intArr[0] = 0;
+        intArr[1] = 2;
+        intArr[2] = 4;
+        intArr[3] = 6;
 
 //        System.out.println(Arrays.toString(intArr));
 
@@ -60,11 +60,13 @@ public class Main {
         intList.add(21);
         intList.add(22);
         intList.add(23);
-        System.out.println(intList);
+//        System.out.println(intList);
 
-        DoublyLinkedList.listTakeoverAndAdd((DoublyLinkedList) doublyList1, intArrList);
+        DoublyLinkedList.insertCollection((DoublyLinkedList) doublyList1,
+                (Iterable<Integer>) intArrList);
         doublyList1.print();
-        System.out.println(intArrList);
+        doublyList2.print();
+
 
     }
 }
