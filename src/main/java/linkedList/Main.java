@@ -62,11 +62,11 @@ public class Main {
         intList.add(23);
 //        System.out.println(intList);
 
-        DoublyLinkedList.insertCollection((DoublyLinkedList) doublyList1,
-                (Iterable<Integer>) intArrList);
+        DoublyLinkedList.insertCollection((DoublyLinkedList) doublyList1, intArrList);
         doublyList1.print();
-        doublyList2.print();
+//        doublyList2.print();
+        System.out.println(intArrList);
 
-
+        Command command4 = doublyList1::getFirstAndDel;
     }
 }

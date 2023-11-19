@@ -1,5 +1,7 @@
 package linkedList;
 
+import java.util.Iterator;
+
 public class SinglyLinkedList implements CustomList {
     private Node head;
     private Node tail;

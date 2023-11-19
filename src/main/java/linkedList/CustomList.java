@@ -12,4 +12,7 @@ public interface CustomList {
     Boolean isExist(Integer data);
     Boolean listEmpty();
     void print();
+
+    // выполнение действия заданного в параметре метода
+    // для каждого значения списка в прямом/обратном порядке
 }

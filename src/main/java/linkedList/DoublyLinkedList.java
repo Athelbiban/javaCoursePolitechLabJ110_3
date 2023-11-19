@@ -1,6 +1,5 @@
 package linkedList;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -122,11 +121,12 @@ public class DoublyLinkedList implements CustomList {
 
     // добавление всех значений заданной коллекции в начало списка
     public static void insertCollection(DoublyLinkedList list, Iterable<Integer> collection) {
-        if (collection != null) {
+        if (list != null && collection != null) {
             Collections.reverse((List<Integer>) collection);
             for (int i : collection) {
                 list.insert(i);
             }
+            Collections.reverse((List<Integer>) collection);
         }
     }
 
@@ -179,6 +179,12 @@ public class DoublyLinkedList implements CustomList {
             }
             copyList.print();
         }
+    }
+
+    // выполнение действия заданного в параметре метода
+    // для каждого значения списка в прямом/обратном порядке
+    public void forEach(Command command) {
+        command.execute();
     }
 
     @Override
