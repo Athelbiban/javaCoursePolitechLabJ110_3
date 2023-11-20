@@ -62,11 +62,13 @@ public class Main {
         intList.add(23);
 //        System.out.println(intList);
 
-        DoublyLinkedList.insertCollection((DoublyLinkedList) doublyList1, intArrList);
-        doublyList1.print();
-//        doublyList2.print();
-        System.out.println(intArrList);
-
         Command command4 = doublyList1::getFirstAndDel;
+        Command command5 = new Command() {
+            @Override
+            public void execute() {
+            }
+        };
+        ((DoublyLinkedList) doublyList1).forEach(doublyList1::getFirstAndDel);
+        doublyList1.print();
     }
 }
