@@ -40,9 +40,9 @@ public class Main {
         doublyList2.add(4);
         doublyList2.add(2);
 
-        doublyList1.print();
-        doublyList2.print();
-        System.out.println();
+//        doublyList1.print();
+//        doublyList2.print();
+//        System.out.println();
 
         Integer[] intArr = new Integer[4];
         intArr[0] = 0;
@@ -62,9 +62,15 @@ public class Main {
         intList.add(23);
 //        System.out.println(intList);
 
-        doublyList1.print();
-        Command command4 = () -> ((DoublyLinkedList) doublyList1).incrementReverseOrder( 10);
-        DoublyLinkedList.callCommand(command4);
-        doublyList1.print();
+//        doublyList1.print();
+//        Command command4 = () -> ((DoublyLinkedList) doublyList1).incrementReverseOrder( 10);
+//        DoublyLinkedList.callCommand(command4);
+//        doublyList1.print();
+
+        CustomList expandedLinkedList1 = new ExpandedLinkedList();
+        expandedLinkedList1.print();
+        System.out.println(expandedLinkedList1.listEmpty());
+        expandedLinkedList1.add(1);
+        expandedLinkedList1.print();
     }
 }

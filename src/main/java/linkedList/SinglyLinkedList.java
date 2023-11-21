@@ -1,7 +1,5 @@
 package linkedList;
 
-import java.util.Iterator;
-
 public class SinglyLinkedList implements CustomList {
     private Node head;
     private Node tail;
@@ -41,12 +39,12 @@ public class SinglyLinkedList implements CustomList {
     @Override
     public void add(Integer data) {
         Node temp = new Node(data, null);
-        if (head == null) {
-            head = tail = temp;
-        }
-        else {
+        if (!listEmpty()) {
             tail.next = temp;
             tail = temp;
+        }
+        else {
+            head = tail = temp;
         }
     }
 
