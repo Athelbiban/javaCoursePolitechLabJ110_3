@@ -183,13 +183,28 @@ public class DoublyLinkedList implements CustomList {
 
     // выполнение действия заданного в параметре метода
     // для каждого значения списка в прямом/обратном порядке
-    public static void forEach(Command command) {
-//        Node tempHead = ;
-//        while (tempHead != null) {
-//            command.execute();
-//            tempHead.data++;
-//            tempHead = tempHead.next;
-//        }
+    public static void callCommand(Command command) {
+        command.execute();
+    }
+
+    public void incrementDirectOrder(Integer value) {
+        if (!listEmpty()) {
+            Node tempHead = head;
+            while (tempHead != null) {
+                tempHead.data += value;
+                tempHead = tempHead.next;
+            }
+        }
+    }
+
+    public void incrementReverseOrder(Integer value) {
+        if (!listEmpty()) {
+            Node tempTail = tail;
+            while (tempTail != null) {
+                tempTail.data += value;
+                tempTail = tempTail.previous;
+            }
+        }
     }
 
     @Override
