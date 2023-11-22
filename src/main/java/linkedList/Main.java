@@ -69,8 +69,31 @@ public class Main {
 
         CustomList expandedLinkedList1 = new ExpandedLinkedList();
         expandedLinkedList1.print();
-        System.out.println(expandedLinkedList1.listEmpty());
+        expandedLinkedList1.add(3);
+        expandedLinkedList1.print();
+        expandedLinkedList1.add(3);
+        expandedLinkedList1.add(3);
+        expandedLinkedList1.add(3);
+        expandedLinkedList1.add(3);
+        expandedLinkedList1.add(3);
+        expandedLinkedList1.add(3);
+        expandedLinkedList1.add(3);
+        expandedLinkedList1.add(3);
+        expandedLinkedList1.add(3);
+        expandedLinkedList1.add(0);
         expandedLinkedList1.add(1);
+        expandedLinkedList1.add(2);
+        expandedLinkedList1.add(3);
+        expandedLinkedList1.add(4);
+        expandedLinkedList1.add(5);
+        expandedLinkedList1.add(6);
+        expandedLinkedList1.add(7);
+        expandedLinkedList1.add(8);
+        expandedLinkedList1.add(9);
+//        expandedLinkedList1.add(8);
+        expandedLinkedList1.print();
+
+        expandedLinkedList1.insert(5);
         expandedLinkedList1.print();
     }
 }
