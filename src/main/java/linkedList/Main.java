@@ -35,7 +35,9 @@ public class Main {
         doublyList1.add(1);
         doublyList1.add(3);
         doublyList1.add(5);
+        doublyList1.add(3);
         doublyList1.add(7);
+        doublyList1.add(3);
         doublyList2.add(6);
         doublyList2.add(4);
         doublyList2.add(2);
@@ -69,17 +71,26 @@ public class Main {
 
         CustomList expandedLinkedList1 = new ExpandedLinkedList();
         expandedLinkedList1.print();
+        expandedLinkedList1.add(0);
+        expandedLinkedList1.add(1);
+        expandedLinkedList1.add(2);
         expandedLinkedList1.add(3);
-        expandedLinkedList1.print();
+        expandedLinkedList1.add(4);
+        expandedLinkedList1.add(5);
+        expandedLinkedList1.add(6);
+        expandedLinkedList1.add(7);
+        expandedLinkedList1.add(8);
+        expandedLinkedList1.add(9);
+        expandedLinkedList1.add(0);
+        expandedLinkedList1.add(1);
+        expandedLinkedList1.add(2);
         expandedLinkedList1.add(3);
-        expandedLinkedList1.add(3);
-        expandedLinkedList1.add(3);
-        expandedLinkedList1.add(3);
-        expandedLinkedList1.add(3);
-        expandedLinkedList1.add(3);
-        expandedLinkedList1.add(3);
-        expandedLinkedList1.add(3);
-        expandedLinkedList1.add(3);
+        expandedLinkedList1.add(4);
+        expandedLinkedList1.add(5);
+        expandedLinkedList1.add(6);
+        expandedLinkedList1.add(7);
+        expandedLinkedList1.add(8);
+        expandedLinkedList1.add(9);
         expandedLinkedList1.add(0);
         expandedLinkedList1.add(1);
         expandedLinkedList1.add(2);
@@ -93,7 +104,25 @@ public class Main {
 //        expandedLinkedList1.add(8);
         expandedLinkedList1.print();
 
-        expandedLinkedList1.insert(5);
+        expandedLinkedList1.insert(7);
+        expandedLinkedList1.print();
+//        expandedLinkedList1.insert(5);
+//        expandedLinkedList1.print();
+//        expandedLinkedList1.insert(5);
+//        expandedLinkedList1.print();
+
+//        expandedLinkedList1.remove(7);
+//        expandedLinkedList1.print();
+//        expandedLinkedList1.remove(3);
+//        expandedLinkedList1.print();
+//        expandedLinkedList1.remove(3);
+//        expandedLinkedList1.print();
+//        expandedLinkedList1.remove(3);
+//        expandedLinkedList1.print();
+
+        expandedLinkedList1.remove(9);
+        expandedLinkedList1.print();
+        expandedLinkedList1.remove(0);
         expandedLinkedList1.print();
     }
 }

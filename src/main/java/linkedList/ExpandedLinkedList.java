@@ -3,7 +3,7 @@ package linkedList;
 import java.util.Arrays;
 
 public class ExpandedLinkedList implements CustomList{
-    private static final int size = 10;
+    private static final int SIZE = 10;
     private Node head;
     private Node tail;
 
@@ -11,8 +11,8 @@ public class ExpandedLinkedList implements CustomList{
     public void add(Integer data) {
         dataVerification(data);
         if (!listEmpty()) {
-            if (tail.data[size - 1] != null) {
-                Integer[] tempArr = new Integer[size];
+            if (tail.data[SIZE - 1] != null) {
+                Integer[] tempArr = new Integer[SIZE];
                 tempArr[0] = data;
                 Node newNode = new Node(tempArr, null);
                 tail.next = newNode;
@@ -28,7 +28,7 @@ public class ExpandedLinkedList implements CustomList{
             }
         }
         else {
-            Integer[] tempArr = new Integer[size];
+            Integer[] tempArr = new Integer[SIZE];
             tempArr[0] = data;
             Node tempNode = new Node(tempArr, null);
             head = tail = tempNode;
@@ -38,39 +38,42 @@ public class ExpandedLinkedList implements CustomList{
     @Override
     public void insert(Integer data) {
         dataVerification(data);
+
         if (!listEmpty()) {
-
-            Node previousTail = tail;
+            Node tempHead = head;
             Node tempTail = tail;
-            while (previousTail != head) {
-                if (tail.data[size - 1] != null) {
-                    Integer[] tempArr = new Integer[size];
-                    tempArr[0] = tail.data[size - 1];
-                    Node newNode = new Node(tempArr, null);
-                    for (int i = size - 2; i >= 0; i--) {
-                        tail.data[i + 1] = tail.data[i];
-                    }
+            Node previous = head;
 
-                    Node tempHead = head;
-                    while (tempHead != tail) {
-                        previousTail = tempHead;
-                        tempHead = tempHead.next;
-                    }
-                    if (previousTail == null) {
-                        head.data[0] = data;
-                        break;
-                    }
-                    tail.next = newNode;
-                    tail = newNode;
-                }
-                else {
+            if (tail.data[SIZE - 1] != null) {
+                Integer[] tempArr = new Integer[SIZE];
+                tempArr[0] = tail.data[SIZE - 1];
+                tail.next = new Node(tempArr, null);
+                tail = tail.next;
+            }
 
+            while (true) {
+                for (int i = SIZE - 2; i >= 0; i--) {
+                    tempTail.data[i + 1] = tempTail.data[i];
                 }
-                tempTail = tempTail.next;
+
+                if (head == tempTail) {
+                    head.data[0] = data;
+                    break;
+                }
+
+                while (tempHead != tempTail) {
+                    previous = tempHead;
+                    tempHead = tempHead.next;
+                }
+
+                tempTail.data[0] = previous.data[SIZE - 1];
+                tempTail = previous;
+                tempHead = head;
             }
         }
+
         else {
-            Integer[] newArr = new Integer[size];
+            Integer[] newArr = new Integer[SIZE];
             newArr[0] = data;
             Node newNode = new Node(newArr, null);
             head = tail = newNode;
@@ -79,7 +82,53 @@ public class ExpandedLinkedList implements CustomList{
 
     @Override
     public void remove(Integer data) {
+        dataVerification(data);
 
+        if (!listEmpty()) {
+            boolean flag = true;
+            while (flag) {
+                Node tempHead = head;
+                Node previous = head;
+                Integer target = null;
+
+                while (tempHead != null) {
+                    for (int i = 0; i < SIZE; i++) {
+                        if (tempHead != previous && i == 0 && target != null) {
+                            previous.data[SIZE - 1] = tempHead.data[i];
+                            target = i;
+                        }
+
+                        if (target != null && i != 0) {
+                            if (tempHead.data[i] != null && tempHead.data[i].equals(data)) {
+                                tempHead.data[i] = null;
+                            }
+                            tempHead.data[i - 1] = tempHead.data[i];
+                            target = i;
+                        }
+
+                        if (tempHead.data[i] != null && tempHead.data[i].equals(data)) {
+                            target = i;
+                        }
+                    }
+
+                    if (tempHead.data[0] == null) {
+                        tail = previous;
+                        tail.next = null;
+                    }
+
+                    if (target != null) {
+                        tempHead.data[SIZE - 1] = null;
+                        flag = true;
+                    }
+                    else {
+                        flag = false;
+                    }
+
+                    previous = tempHead;
+                    tempHead = tempHead.next;
+                }
+            }
+        }
     }
 
     @Override
