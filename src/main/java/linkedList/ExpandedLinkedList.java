@@ -83,50 +83,23 @@ public class ExpandedLinkedList implements CustomList{
     @Override
     public void remove(Integer data) {
         dataVerification(data);
+        if (head != null) {
+            Node tempHead = head;
+            Node previous = null;
 
-        if (!listEmpty()) {
-            boolean flag = true;
-            while (flag) {
-                Node tempHead = head;
-                Node previous = head;
-                Integer target = null;
+            while (tempHead != null) {
+                Remover.remover(tempHead, data);
+                Remover.placeholder(tempHead, previous, Remover.getFirstIndexNull(previous));
+                Remover.stacker(tempHead, previous);
 
-                while (tempHead != null) {
-                    for (int i = 0; i < SIZE; i++) {
-                        if (tempHead != previous && i == 0 && target != null) {
-                            previous.data[SIZE - 1] = tempHead.data[i];
-                            target = i;
-                        }
-
-                        if (target != null && i != 0) {
-                            if (tempHead.data[i] != null && tempHead.data[i].equals(data)) {
-                                tempHead.data[i] = null;
-                            }
-                            tempHead.data[i - 1] = tempHead.data[i];
-                            target = i;
-                        }
-
-                        if (tempHead.data[i] != null && tempHead.data[i].equals(data)) {
-                            target = i;
-                        }
-                    }
-
-                    if (tempHead.data[0] == null) {
-                        tail = previous;
-                        tail.next = null;
-                    }
-
-                    if (target != null) {
-                        tempHead.data[SIZE - 1] = null;
-                        flag = true;
-                    }
-                    else {
-                        flag = false;
-                    }
-
+                if (tempHead.data[0] != null) {
                     previous = tempHead;
-                    tempHead = tempHead.next;
                 }
+                else if (tempHead == head) {
+                    head = head.next;
+                }
+
+                tempHead = tempHead.next;
             }
         }
     }
@@ -187,6 +160,12 @@ public class ExpandedLinkedList implements CustomList{
         }
     }
 
+    private static void dataVerification(Node data) {
+        if (data == null) {
+            throw new IllegalArgumentException("IllegalArgumentException: array must not be empty");
+        }
+    }
+
     private static class Node {
         Integer[] data;
         Node next;
@@ -194,6 +173,75 @@ public class ExpandedLinkedList implements CustomList{
         public Node(Integer[] data, Node next) {
             this.data = data;
             this.next = next;
+        }
+    }
+
+    private abstract static class Remover {
+
+//        Node headNode;
+//        Integer data;
+
+//        public Remover(Node headNode, Integer data) {
+//            this.headNode = headNode;
+//            this.data = data;
+//        }
+
+        static void remover(Node node, Integer data) {
+            dataVerification(node);
+            for (int i = 0; i < node.data.length; i++) {
+                if (node.data[i] != null && node.data[i].equals(data)) {
+                    node.data[i] = null;
+                }
+            }
+        }
+
+        static void stacker(Node node, Node previousNode) {
+            dataVerification(node);
+            for (int i = 0; i < node.data.length; i++) {
+                if (node.data[i] == null) {
+                    for (int j = i; j < node.data.length; j++) {
+                        if (node.data[j] != null) {
+                            node.data[i] = node.data[j];
+                            node.data[j] = null;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if (node.data[0] == null && previousNode != null) {
+                previousNode.next = node.next;
+            }
+//            else if (node.data[0] == null) {
+//                node.next = null;
+//            }
+        }
+
+        void mover() {
+
+        }
+
+        static Integer getFirstIndexNull(Node node) {
+            if (node != null) {
+                for (int i = 0; i < node.data.length; i++) {
+                    if (node.data[i] == null) {
+                        return i;
+                    }
+                }
+            }
+            return null;
+        }
+
+        static void placeholder(Node node, Node previousNode, Integer index) {
+            dataVerification(node);
+
+            for (int i = 0; i < node.data.length; i++) {
+                if (index != null && index < SIZE && node.data[i] != null) {
+                    previousNode.data[index] = node.data[i];
+                    node.data[i] = null;
+                    index++;
+                }
+            }
         }
     }
 }
