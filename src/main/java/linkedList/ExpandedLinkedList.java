@@ -1,6 +1,7 @@
 package linkedList;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class ExpandedLinkedList implements CustomList{
     private static final int SIZE = 10;
@@ -83,7 +84,7 @@ public class ExpandedLinkedList implements CustomList{
     @Override
     public void remove(Integer data) {
         dataVerification(data);
-        if (head != null) {
+        if (!listEmpty()) {
             Node tempHead = head;
             Node previous = null;
 
@@ -98,6 +99,9 @@ public class ExpandedLinkedList implements CustomList{
                 else if (tempHead == head) {
                     head = head.next;
                 }
+                else if (tempHead == tail) {
+                    tail = previous;
+                }
 
                 tempHead = tempHead.next;
             }
@@ -106,21 +110,78 @@ public class ExpandedLinkedList implements CustomList{
 
     @Override
     public Integer getLast() {
+        if (!listEmpty()) {
+            for (int i = 1; i < SIZE; i++) {
+                if (tail.data[i] == null) {
+                    return tail.data[i - 1];
+                }
+            }
+            return tail.data[SIZE - 1];
+        }
         return null;
     }
 
     @Override
     public Integer getFirst() {
+        if (!listEmpty()) {
+            return head.data[0];
+        }
         return null;
     }
 
     @Override
     public Integer getFirstAndDel() {
+        if (!listEmpty()) {
+            Node tempHead = head;
+            Node previous = null;
+            int temp = getFirst();
+            head.data[0] = null;
+
+            while (tempHead != null) {
+                Remover.placeholder(tempHead, previous, Remover.getFirstIndexNull(previous));
+                Remover.stacker(tempHead, previous);
+
+                if (tempHead.data[0] != null) {
+                    previous = tempHead;
+                }
+                else if (tempHead == head) {
+                    head = head.next;
+                }
+                else if (tempHead == tail) {
+                    tail = previous;
+                }
+
+                tempHead = tempHead.next;
+            }
+            return temp;
+        }
         return null;
     }
 
     @Override
     public Integer getLastAndDel() {
+        if (!listEmpty()) {
+            int temp = getLast();
+            tail.data[Objects.requireNonNullElse(Remover.getFirstIndexNull(tail), SIZE) - 1] = null;
+
+            if (tail.data[0] == null && tail != head) {
+                Node tempHead = head;
+                Node previous = null;
+
+                while (tempHead != tail) {
+                    previous = tempHead;
+                    tempHead = tempHead.next;
+                }
+
+                tail = previous;
+                tail.next = null;
+            }
+            else if (tail.data[0] == null) {
+                head = null;
+                tail = null;
+            }
+            return temp;
+        }
         return null;
     }
 
@@ -178,14 +239,6 @@ public class ExpandedLinkedList implements CustomList{
 
     private abstract static class Remover {
 
-//        Node headNode;
-//        Integer data;
-
-//        public Remover(Node headNode, Integer data) {
-//            this.headNode = headNode;
-//            this.data = data;
-//        }
-
         static void remover(Node node, Integer data) {
             dataVerification(node);
             for (int i = 0; i < node.data.length; i++) {
@@ -212,13 +265,6 @@ public class ExpandedLinkedList implements CustomList{
             if (node.data[0] == null && previousNode != null) {
                 previousNode.next = node.next;
             }
-//            else if (node.data[0] == null) {
-//                node.next = null;
-//            }
-        }
-
-        void mover() {
-
         }
 
         static Integer getFirstIndexNull(Node node) {
@@ -234,7 +280,6 @@ public class ExpandedLinkedList implements CustomList{
 
         static void placeholder(Node node, Node previousNode, Integer index) {
             dataVerification(node);
-
             for (int i = 0; i < node.data.length; i++) {
                 if (index != null && index < SIZE && node.data[i] != null) {
                     previousNode.data[index] = node.data[i];
