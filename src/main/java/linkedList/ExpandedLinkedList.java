@@ -243,8 +243,8 @@ public class ExpandedLinkedList implements CustomList{
             Node previous = null;
 
             while (newTail != null) {
-                Remover.placeholder(newTail.next, newTail, Remover.getFirstIndexNull(newTail));
                 Remover.stacker(newTail, previous);
+                Remover.placeholder(newTail.next, newTail, Remover.getFirstIndexNull(newTail));
                 previous = newTail;
                 newTail = newTail.next;
             }
