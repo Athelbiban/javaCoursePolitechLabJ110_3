@@ -187,6 +187,18 @@ public class ExpandedLinkedList implements CustomList{
 
     @Override
     public Boolean isExist(Integer data) {
+        if (!listEmpty()) {
+            Node tempHead = head;
+            while (tempHead != null) {
+                for (Integer i : head.data) {
+                    if (i != null && i.equals(data)) {
+                        return true;
+                    }
+                }
+                tempHead = tempHead.next;
+            }
+            return false;
+        }
         return null;
     }
 
@@ -195,6 +207,50 @@ public class ExpandedLinkedList implements CustomList{
 
     @Override
     public void print() { System.out.println(this); }
+
+    // добавление всех значений заданного массива в начало списка
+    public void insertArray(Integer[] array) {
+        dataVerification(array);
+        Node newHead = null;
+        Node newTail = null;
+
+        if (array.length > SIZE) {
+            int numberOfNewArrays = array.length / SIZE + (array.length % SIZE != 0 ? 1 : 0);
+            Node newNode = null;
+            Node previousNode;
+
+            for (int i = 0; i < numberOfNewArrays; i++) {
+                Integer[] tempArr = Arrays.copyOfRange(array, i*SIZE, i*SIZE + SIZE);
+
+                if (newNode != null) {
+                    previousNode = newNode;
+                    newNode = new Node(tempArr, null);
+                    previousNode.next = newNode;
+                }
+                else {
+                    newNode = new Node(tempArr, null);
+                    newHead = newNode;
+                }
+
+                newTail = newNode;
+            }
+
+            newTail.next = head;
+            head = newHead;
+        }
+
+        if (newTail != null && newTail.data[SIZE - 1] == null) {
+            Node previous = null;
+
+            while (newTail != null) {
+                Remover.placeholder(newTail.next, newTail, Remover.getFirstIndexNull(newTail));
+                Remover.stacker(newTail, previous);
+                previous = newTail;
+                newTail = newTail.next;
+            }
+
+        }
+    }
 
     @Override
     public String toString() {
@@ -279,12 +335,13 @@ public class ExpandedLinkedList implements CustomList{
         }
 
         static void placeholder(Node node, Node previousNode, Integer index) {
-            dataVerification(node);
-            for (int i = 0; i < node.data.length; i++) {
-                if (index != null && index < SIZE && node.data[i] != null) {
-                    previousNode.data[index] = node.data[i];
-                    node.data[i] = null;
-                    index++;
+            if (node != null) {
+                for (int i = 0; i < node.data.length; i++) {
+                    if (index != null && index < SIZE && node.data[i] != null) {
+                        previousNode.data[index] = node.data[i];
+                        node.data[i] = null;
+                        index++;
+                    }
                 }
             }
         }

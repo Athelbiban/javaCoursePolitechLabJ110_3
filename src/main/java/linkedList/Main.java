@@ -146,7 +146,11 @@ public class Main {
 //        expandedLinkedList1.print();
 //        System.out.println(expandedLinkedList1.getLastAndDel());
 //        expandedLinkedList1.print();
-        System.out.println(expandedLinkedList1.getFirstAndDel());
+//        System.out.println(expandedLinkedList1.getFirstAndDel());
+//        expandedLinkedList1.print();
+
+        Integer[] integersArr = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+        ((ExpandedLinkedList) expandedLinkedList1).insertArray(integersArr);
         expandedLinkedList1.print();
     }
 }
